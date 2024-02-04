@@ -46,6 +46,7 @@ jobs:
           asset_name: tcgui-${{github.event.pull_request.title}}.jar
           tag: v${{ github.event.pull_request.title }}
           overwrite: true
+          make_latest: true
           body: ${{github.event.pull_request.body}}
           release_name: Version ${{github.event.pull_request.title}}
       - name: Bump dev version
