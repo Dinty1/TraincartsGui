@@ -52,7 +52,7 @@ jobs:
         run: | # some of this copied from somewhere
           currentversion=${{github.event.pull_request.title}}
           versionsplit=( ${currentversion//./ } )
-          versionsplit[2]++
+          ((versionsplit[2]++))
           nextpatchversion="${versionsplit[0]}.${versionsplit[1]}.${versionsplit[2]}"
           suffix=-SNAPSHOT
           mvn -B versions:set -DnewVersion=$nextpatchversion$suffix
