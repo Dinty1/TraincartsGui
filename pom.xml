@@ -6,7 +6,7 @@
 
   <groupId>com.dnamaster10</groupId>
   <artifactId>tcgui</artifactId>
-  <version>11.11.12-SNAPSHOT</version>
+  <version>2.2.2</version>
   <packaging>jar</packaging>
 
   <name>TraincartsGui</name>
