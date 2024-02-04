@@ -32,7 +32,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -m "Release ${{github.event.pull_request.title}}" -a
-      - name: Push to main
+      - name: Push to master
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,3 +49,8 @@ jobs:
           overwrite: true
           body: ${{github.event.pull_request.body}}
           release_name: Version ${{github.event.pull_request.title}}
+      - name: Push to dev
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: refs/heads/dev
