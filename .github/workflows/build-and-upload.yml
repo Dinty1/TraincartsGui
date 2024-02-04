@@ -38,6 +38,9 @@ jobs:
           tag_name: dev
           github_token: ${{ secrets.GITHUB_TOKEN }}
           delete_release: true
+      - name: Workaround Hack
+        run: |
+          sleep 60
       - name: Publish Snapshot Release
         id: upload_assets
         uses: svenstaro/upload-release-action@v2
@@ -48,6 +51,4 @@ jobs:
           make_latest: false
           body: |
             Latest commit: ${{ github.event.head_commit.id}} ${{ github.event.head_commit.message }}
-
-            *Note: the release time might be outdated*
           release_name: Latest Development Build
