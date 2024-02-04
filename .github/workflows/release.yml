@@ -51,7 +51,7 @@ jobs:
       - name: Bump dev version
         run: |
           currentversion=${{github.event.pull_request.title}}
-          nextpatchversion=$VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.
+          nextpatchversion=echo $VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.
           suffix=-SNAPSHOT
           mvn -B versions:set -DnewVersion=$nextpatchversion$suffix
           git commit -am "Version to $nextpatchversion$suffix"
