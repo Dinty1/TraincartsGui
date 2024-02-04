@@ -1,6 +1,6 @@
 name: Do release stuff
 
-on: 
+on:
   pull_request:
     branches:
       - master
