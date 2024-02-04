@@ -1,6 +1,6 @@
 name: Build and release snapshots
 
-on:
+on: 
   push:
     branches:
       - dev
@@ -45,7 +45,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ env.filename }}
           overwrite: true
-          prerelease: true
+          make_latest: false
           body: |
             Latest commit: ${{ github.event.head_commit.id}} ${{ github.event.head_commit.message }}
 
