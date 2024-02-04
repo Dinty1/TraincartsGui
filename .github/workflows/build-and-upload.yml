@@ -1,6 +1,6 @@
 name: Build and release snapshots
 
-on: 
+on:
   push:
     branches:
       - dev
