@@ -27,8 +27,6 @@ jobs:
         id: pom
         run: |
           mvn -B versions:set -DnewVersion=${{github.event.pull_request.title}}
-          echo "JAR=$(mvn git-commit-id:revision -q -Dexec.executable=echo -Dexec.args="\${project.build.finalName}" --non-recursive exec:exec).jar >> $GITHUB_ENV"
-          echo "VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec) >> $GITHUB_ENV"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub"
           git commit -m "Release ${{github.event.pull_request.title}}" -a
@@ -50,6 +48,12 @@ jobs:
           overwrite: true
           body: ${{github.event.pull_request.body}}
           release_name: Version ${{github.event.pull_request.title}}
+      - name: Bump dev version
+        run: |
+          currentversion=${{github.event.pull_request.title}}
+          nextpatchversion=$VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.
+          mvn -B versions:set -DnewVersion=$(nextpatchversion)-SNAPSHOT
+          git commit -am "Version to $(nextpatchversion)-SNAPSHOT"
       - name: Push to dev
         uses: ad-m/github-push-action@master
         with:
