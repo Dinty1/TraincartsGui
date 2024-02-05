@@ -68,7 +68,6 @@ public class CompanyDeleteCommandHandler extends CommandHandler<SQLException> {
     }
     @Override
     protected void execute(CommandSender sender, String[] args) throws SQLException {
-        companyAccessor.deleteCompany(args[2]);
         sender.sendMessage(ChatColor.GREEN + "Successfully deleted company \"" + args[2] + "\"");
     }
     @Override
